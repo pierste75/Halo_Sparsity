@@ -5,3 +5,7 @@ This code computes the average halo sparsity at a given redshift for a given cos
 # Installation
 
 Modify the Makefile to specify your Fortran compiler, after compiling the code run the executable, sparse.
+
+## Author
+
+* **Pier-Stefano Corasaniti**
