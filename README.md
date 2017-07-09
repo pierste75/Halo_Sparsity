@@ -8,4 +8,4 @@ Modify the Makefile to specify your Fortran compiler, after compiling the code r
 
 ## Author
 
-* **Pier-Stefano Corasaniti**
+* **Pier-Stefano Corasaniti** (LUTH, CNRS & Observatory of Paris) 
