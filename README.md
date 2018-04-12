@@ -4,7 +4,7 @@ This code computes the average halo sparsity at a given redshift for a given cos
 
 # Installation
 
-Modify the Makefile to specify your Fortran compiler, after compiling the code run the executable, sparsity. Namelist files for LCDM-WMAP7 and Planck cosmological parameters can be found in the NAMELIST folder. The code can be easily modified to include other mass function parametrizations at M500c and M1000c, see module in mf_commons.f90. It can also be easily extended to include sparsity definition for other overdensity thresolds.
+Modify the Makefile to specify your Fortran compiler, after compiling the code run the executable, sparsity. Namelist files for LCDM-WMAP7 and Planck cosmological parameters can be found in the NAMELIST folder. The code can be easily modified to include other mass function parametrizations at M500c and M1000c, see corresponding functions in module MF in mf_commons.f90. It can also be easily extended to include sparsity definition for other overdensity thresolds.
 
 # Acknowledgements
 
