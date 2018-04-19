@@ -45,7 +45,7 @@ CONTAINS
     IMPLICIT NONE
     INTEGER n
     REAL(8) :: x
-    REAL(8), DIMENSION(2) :: y, dydx
+    REAL(8), DIMENSION(n) :: y, dydx
     REAL(8) :: OMEGA_DE,w_de,z,f_OM,f_OR,f_Q,f
 
     z=exp(-x)-1.d0
@@ -62,12 +62,11 @@ CONTAINS
   SUBROUTINE GROWTH_FACTOR
     IMPLICIT NONE
     REAL(8), PARAMETER :: EPS=1.d-7
-    INTEGER, PARAMETER :: NMAX=100, KMAXX=100
     INTEGER :: nok,nbad,nvar
     INTEGER :: IA
     REAL(8) :: h1,hmin
     REAL(8) :: XINI,AINI,XFIN,ZINI
-    REAL(8), DIMENSION(2) :: y,dydx
+    REAL(8), DIMENSION(2) :: y
     REAL(8) :: ALFAFIN,ALFASTART,DIN,DEND
     EXTERNAL rkqs
     REAL(8), DIMENSION(NZ) :: DPLUS_TEMP
