@@ -1,4 +1,4 @@
-f90comp = gfortran-mp-6
+f90comp = gfortran
 
 sparsity: cosmo_commons.o tf_hueis.o pk_commons.o mf_commons.o sparsity_driver.o
 
