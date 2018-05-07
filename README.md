@@ -1,6 +1,6 @@
 # Halo_Sparsity
 
-This code computes the average halo sparsity for massive halos (>10<sup>13</sup> M<sub>Sun</sub> h<sup>-1</sup>) at a given redshift for a given cosmological model by solving Eq. (4) in Corasaniti et al. (2018) assuming a Sheth-Tormen parametrization of the halo mass function at M500<sub>c</sub> and M<sub>1000c</sub> masses calibrated against the RayGal simulation halo catalogs. The input linear matter power spectrum for a given set of cosmological parameters is given by the Eisenstein & Hu (1998) formulae of the linear transfer function, while the linearly extrapolated spherical collapse threshold is given by the formula from Kitayama & Suto (1996). For more details see Corasaniti et al. (2018).
+This code computes the average halo sparsity for massive halos (>10<sup>13</sup> M<sub>Sun</sub> h<sup>-1</sup>) at a given redshift for a given cosmological model by solving Eq. (4) in Corasaniti et al. (2018) assuming a Sheth-Tormen parametrization of the halo mass function at M<sub>500c</sub> and M<sub>1000c</sub> masses calibrated against the RayGal simulation halo catalogs. The input linear matter power spectrum for a given set of cosmological parameters is given by the Eisenstein & Hu (1998) formulae of the linear transfer function, while the linearly extrapolated spherical collapse threshold is given by the formula from Kitayama & Suto (1996). For more details see Corasaniti et al. (2018).
 
 # Installation & Running
 
