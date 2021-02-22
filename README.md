@@ -1,6 +1,6 @@
 # Halo_Sparsity
 
-This code computes the average halo sparsity for massive halos (>10<sup>13</sup> M<sub>Sun</sub> h<sup>-1</sup>) at a given redshift for a given cosmological model by solving Eq. (4) in Corasaniti et al. (2018) assuming a Sheth-Tormen parametrization of the halo mass function at M<sub>500c</sub> and M<sub>1000c</sub> masses calibrated against the RayGal simulation halo catalogs. The input linear matter power spectrum for a given set of cosmological parameters is given by the Eisenstein & Hu (1998) formulae of the linear transfer function, while the linearly extrapolated spherical collapse threshold is given by the formula from Kitayama & Suto (1996). For more details see Corasaniti et al. (2018).
+This code computes the average halo sparsity for massive halos (>10<sup>13</sup> M<sub>Sun</sub> h<sup>-1</sup>) at a given redshift for a given cosmological model by solving Eq. (4) in Corasaniti et al. (2018) for two different overdensity cases (<s<sub>200,500</sub>> and <s<sub>500,1000</sub>>) assuming mass function parametrizations from Despali et al. (2016) or calibrated against the RayGal simulation halo catalogs. In the case of the Despali et al. mass functions the average sparsity includes the matched halo correction calibrated on the RayGal simulations. The input linear matter power spectrum for a given set of cosmological parameters is given by the Eisenstein & Hu (1998) formulae of the linear transfer function, while the linearly extrapolated spherical collapse threshold is given by the formula from Kitayama & Suto (1996). For more details see Corasaniti et al. (2018).
 
 # Installation & Running
 
@@ -18,7 +18,7 @@ Enter the values of: Omega<sub>m</sub>, Omega<sub>b</sub> h<sup>2</sup>, h, sigm
 
 The code output on the screen the value of the sparsity s<sub>500,1000</sub>(z<sub>out</sub>)
 
-The code can be easily modified to compute the sparsity over a discretized redshift interval z<sub>min</sub> < z < z<sub>max</sub>, and it can be hacked with a bit of work to include other mass function parametrizations at M500<sub>c</sub> and M1000<sub>c</sub> (see corresponding functions in module MF in mf_commons.f90) and also extended to include sparsity definitions for other overdensity thresolds.
+The code can be easily modified to compute the sparsity over a discretized redshift interval z<sub>min</sub> < z < z<sub>max</sub>, and it can be hacked with a bit of work to include other mass function parametrizations (see corresponding functions in module MF in mf_commons.f90) and also extended to include sparsity definitions for other overdensity thresolds.
 If you have any question or find bugs or having problem do not hesitate to contact Pier-Stefano Corasaniti (Pier-Stefano.Corasaniti _at_ obspm.fr)
 
 # Acknowledgements
@@ -26,7 +26,8 @@ If you have any question or find bugs or having problem do not hesitate to conta
 If you use the code please cite: 
 
 Balmes et al., Mont. Not. Roy. Astron. Soc. 437, 2328 (2014), arXiv:1307.2922\
-Corasaniti et al. (2017), arXiv:1711.00480
+Corasaniti et al. (2017), Astrophys. J. 862, 40 (2018), arXiv:1711.00480\
+Corasaniti, Sereno, Ettori, in preparation
 
 ## Author
 
