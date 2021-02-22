@@ -6,4 +6,6 @@
 -1.0     # w_0
 0.0      # w_a
 0.d0     # redshift output
+1        # s_200500 (1) s_5001000(2)
+Despali   # mf (Despali/Raygal)
 

@@ -3,9 +3,54 @@ MODULE MF
   USE COSMO
   USE POWER_SPECTRUM
 
+    CHARACTER(LEN=10) :: select_mf_option
+
 CONTAINS
 
+  FUNCTION dNdM200c(M200c,REDSHIFT)
 
+    IMPLICIT NONE
+    REAL(8) :: dNdM200c, M200c
+    REAL(8) :: RSIZE, DSIGMADM, REDSHIFT, nu, nu_f_nu
+    REAL(8) :: ACAP_M200c, ASMALL_M200c, PSMALL_M200c   
+    REAL(8) :: OMEGAMZ, DELTA_VIR, x
+
+    RSIZE=(R_to_M*M200c)**(1.d0/3.d0)
+    DSIGMADM=DSIGMADR_R(RSIZE)*R_to_M/3./(R_to_M*M200c)**(2./3.)
+    nu=(DELTAC(OMEGA_M,REDSHIFT)/SIGMA_R(RSIZE)/D_PLUS(REDSHIFT))**2
+
+    OMEGAMZ=OMEGA_M*(1.d0+REDSHIFT)**3*inv_hubblez(REDSHIFT)**2
+    DELTA_VIR=18.d0*PI**2+82.d0*(OMEGAMZ-1.d0)-39.d0*(OMEGAMZ-1.d0)**2
+
+    mf_selector: SELECT CASE(select_mf_option)
+    CASE('Raygal') 
+       x=log10(200./DELTA_VIR)
+
+       ACAP_M200c=-10.2185312*x**2+4.78051093*x-0.1206716
+       ASMALL_M200c=4.07275047*x**2-0.49618532*x+0.96372361
+       PSMALL_M200c=-23.48761585*x**2+10.5651697*x-1.752599071
+
+       nu_f_nu=ACAP_M200c*sqrt(ASMALL_M200c*nu/2.d0/PI)* &
+            & (1.d0+(1.d0/(nu*ASMALL_M200c))**PSMALL_M200c)* &
+            & exp(-ASMALL_M200c*nu/2.d0)
+
+       dNdM200c=2.d0*nu_f_nu*RHO_M/M200c*(-1.d0/SIGMA_R(RSIZE)*DSIGMADM)
+    CASE('Despali')
+       x=log10(200.d0/OMEGAMZ/DELTA_VIR)    
+
+       ACAP_M200c=-0.1362*x+0.3292
+       ASMALL_M200c=0.4332*x**2+0.2263*x+0.7665
+       PSMALL_M200c=-0.1151*x**2+0.2554*x+0.2488
+       
+       nu_f_nu=ACAP_M200c*sqrt(2.d0*ASMALL_M200c/PI*nu)* &
+            & (1.d0+(1.d0/(nu*ASMALL_M200c))**PSMALL_M200c)* &
+            & exp(-ASMALL_M200c*nu/2.d0)
+       
+       dNdM200c=2.d0*nu_f_nu*RHO_M/M200c*(-1.d0/SIGMA_R(RSIZE)*DSIGMADM)
+    END SELECT mf_selector
+
+  END FUNCTION dNdM200c
+  
   FUNCTION dNdM500c(M500c,REDSHIFT)
 
     IMPLICIT NONE
@@ -20,17 +65,32 @@ CONTAINS
 
     OMEGAMZ=OMEGA_M*(1.d0+REDSHIFT)**3*inv_hubblez(REDSHIFT)**2
     DELTA_VIR=18.d0*PI**2+82.d0*(OMEGAMZ-1.d0)-39.d0*(OMEGAMZ-1.d0)**2
-    x=log10(500./DELTA_VIR)
 
-    ACAP_M500c=-2.08511667*x**2+2.71726345*x-0.59113241
-    ASMALL_M500c=-1.0788725*x**2+3.25302957*x-0.32810261
-    PSMALL_M500c=1.04288295*x**2-1.76269479*x+0.06162189
+    mf_selector: SELECT CASE(select_mf_option)
+    CASE('Raygal')
+       x=log10(500./DELTA_VIR)
 
-    nu_f_nu=ACAP_M500c*sqrt(ASMALL_M500c*nu/2.d0/PI)* &
-         & (1.d0+(1.d0/(nu*ASMALL_M500c))**PSMALL_M500c)* &
-         & exp(-ASMALL_M500c*nu/2.d0)
+       ACAP_M500c=-2.08511667*x**2+2.71726345*x-0.59113241
+       ASMALL_M500c=-1.0788725*x**2+3.25302957*x-0.32810261
+       PSMALL_M500c=1.04288295*x**2-1.76269479*x+0.06162189
 
-    dNdM500c=2.d0*nu_f_nu*RHO_M/M500c*(-1.d0/SIGMA_R(RSIZE)*DSIGMADM)     
+       nu_f_nu=ACAP_M500c*sqrt(ASMALL_M500c*nu/2.d0/PI)* &
+            & (1.d0+(1.d0/(nu*ASMALL_M500c))**PSMALL_M500c)* &
+            & exp(-ASMALL_M500c*nu/2.d0)
+
+       dNdM500c=2.d0*nu_f_nu*RHO_M/M500c*(-1.d0/SIGMA_R(RSIZE)*DSIGMADM)
+    CASE('Despali')
+       x=log10(500.d0/OMEGAMZ/DELTA_VIR)    
+
+       ACAP_M500c=-0.1362*x+0.3292
+       ASMALL_M500c=0.4332*x**2+0.2263*x+0.7665
+       PSMALL_M500c=-0.1151*x**2+0.2554*x+0.2488
+
+       nu_f_nu=ACAP_M500c*sqrt(2.d0*ASMALL_M500c/PI*nu)* &
+            & (1.d0+(1.d0/(nu*ASMALL_M500c))**PSMALL_M500c)* &
+            & exp(-ASMALL_M500c*nu/2.d0)
+       dNdM500c=2.d0*nu_f_nu*RHO_M/M500c*(-1.d0/SIGMA_R(RSIZE)*DSIGMADM) 
+    END SELECT mf_selector
 
   END FUNCTION dNdM500c
 
@@ -47,7 +107,10 @@ CONTAINS
     nu=(DELTAC(OMEGA_M,REDSHIFT)/SIGMA_R(RSIZE)/D_PLUS(REDSHIFT))**2
 
     OMEGAMZ=OMEGA_M*(1.d0+REDSHIFT)**3*inv_hubblez(REDSHIFT)**2
-    DELTA_VIR=18.d0*PI**2+82.d0*(OMEGAMZ-1.d0)-39.d0*(OMEGAMZ-1.d0)**2    
+    DELTA_VIR=18.d0*PI**2+82.d0*(OMEGAMZ-1.d0)-39.d0*(OMEGAMZ-1.d0)**2
+
+    mf_selector: SELECT CASE(select_mf_option)
+    CASE('Raygal')
     x=log10(1000/DELTA_VIR)
 
     ACAP_M1000c=-1.65696205*x**2+3.07836133*x-1.20944538
@@ -59,9 +122,49 @@ CONTAINS
          & exp(-ASMALL_M1000c*nu/2.d0)
 
     dNdM1000c=2.d0*nu_f_nu*RHO_M/M1000c*(-1.d0/SIGMA_R(RSIZE)*DSIGMADM)
+        CASE('Despali')
+       x=log10(1000.d0/OMEGAMZ/DELTA_VIR)    
 
+       ACAP_M1000c=-0.1362*x+0.3292
+       ASMALL_M1000c=0.4332*x**2+0.2263*x+0.7665
+       PSMALL_M1000c=-0.1151*x**2+0.2554*x+0.2488
+
+       nu_f_nu=ACAP_M1000c*sqrt(2.d0*ASMALL_M1000c/PI*nu)* &
+            & (1.d0+(1.d0/(nu*ASMALL_M1000c))**PSMALL_M1000c)* &
+            & exp(-ASMALL_M1000c*nu/2.d0)
+       dNdM1000c=2.d0*nu_f_nu*RHO_M/M1000c*(-1.d0/SIGMA_R(RSIZE)*DSIGMADM) 
+ END SELECT mf_selector
+ 
   END FUNCTION dNdM1000c
 
+  FUNCTION MF_M200C_INTEGRAL(MASS_MIN,MASS_MAX,REDSHIFT)
+
+    IMPLICIT NONE
+    REAL(8) :: MASS_MIN, MASS_MAX, REDSHIFT
+    REAL(8) :: MF_M200c_INTEGRAL
+    INTEGER, PARAMETER :: NMASS_INT=500
+    INTEGER :: IMASS_INT
+    REAL(8) :: LNM_MIN, LNM_MAX, DELTAM_INT, MASS_TEMP
+    REAL(8) :: MF_INT_MIN, MF_INT_MAX, MF_INT_TEMP
+
+    LNM_MAX=log(MASS_MAX)
+    LNM_MIN=log(MASS_MIN)
+    DELTAM_INT=(LNM_MAX-LNM_MIN)/dble(NMASS_INT-1)
+
+    MF_INT_MIN=dNdM200c(MASS_MIN,REDSHIFT)
+    MF_INT_MAX=dNdM200c(MASS_MAX,REDSHIFT)
+    MF_INT_TEMP=0.d0
+
+    DO IMASS_INT=2,NMASS_INT-1
+       MASS_TEMP=exp(LNM_MIN+(LNM_MAX-LNM_MIN)* &
+            &    dble(IMASS_INT-1)/dble(NMASS_INT-1))
+       MF_INT_TEMP=MF_INT_TEMP+dNdM200c(MASS_TEMP,REDSHIFT)
+    END DO
+
+    MF_M200c_INTEGRAL=DELTAM_INT/2.d0*(MF_INT_MIN+MF_INT_MAX+2.d0*MF_INT_TEMP)
+
+  END FUNCTION MF_M200C_INTEGRAL
+  
   FUNCTION MF_M500C_INTEGRAL(MASS_MIN,MASS_MAX,REDSHIFT)
 
     IMPLICIT NONE
