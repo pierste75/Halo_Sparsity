@@ -16,7 +16,7 @@ Enter the values of: Omega<sub>m</sub>, Omega<sub>b</sub> h<sup>2</sup>, h, sigm
 
 > ./sparsity < NAMELIST/par_XXX.nml
 
-The code output on the screen the value of the sparsity s<sub>500,1000</sub>(z<sub>out</sub>)
+The code output on the screen the value of the sparsity s<sub></sub>(z<sub>out</sub>)
 
 The code can be easily modified to compute the sparsity over a discretized redshift interval z<sub>min</sub> < z < z<sub>max</sub>, and it can be hacked with a bit of work to include other mass function parametrizations (see corresponding functions in module MF in mf_commons.f90) and also extended to include sparsity definitions for other overdensity thresolds.
 If you have any question or find bugs or having problem do not hesitate to contact Pier-Stefano Corasaniti (Pier-Stefano.Corasaniti _at_ obspm.fr)
