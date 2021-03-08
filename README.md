@@ -27,7 +27,7 @@ If you use the code please cite:
 
 Balmes et al., Mont. Not. Roy. Astron. Soc. 437, 2328 (2014), arXiv:1307.2922\
 Corasaniti et al. (2017), Astrophys. J. 862, 40 (2018), arXiv:1711.00480\
-Corasaniti, Sereno, Ettori, Astrophys. J. in press, arXiv:2103.03283\
+Corasaniti, Sereno, Ettori, Astrophys. J. in press, arXiv:2103.03283
 
 ## Author
 
