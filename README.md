@@ -1,6 +1,6 @@
 # Halo_Sparsity
 
-This code computes the average halo sparsity for massive halos (>10<sup>13</sup> M<sub>Sun</sub> h<sup>-1</sup>) at a given redshift for a given cosmological model by solving Eq. (4) in Corasaniti et al. (2018) for two different overdensity cases (<s<sub>200,500</sub>> and <s<sub>500,1000</sub>>) assuming mass function parametrizations from Despali et al. (2016) or calibrated against the RayGal simulation halo catalogs. In the case of the Despali et al. mass functions the average sparsity includes the matched halo correction calibrated on the RayGal simulations. The input linear matter power spectrum for a given set of cosmological parameters is given by the Eisenstein & Hu (1998) formulae of the linear transfer function, while the linearly extrapolated spherical collapse threshold is given by the formula from Kitayama & Suto (1996). For more details see Corasaniti et al. (2018) and Corasaniti, Sereno & Ettori (in preparation).
+This code computes the average halo sparsity for massive halos (>10<sup>13</sup> M<sub>Sun</sub> h<sup>-1</sup>) at a given redshift for a given cosmological model by solving Eq. (4) in Corasaniti et al. (2018) for two different overdensity cases (<s<sub>200,500</sub>> and <s<sub>500,1000</sub>>) assuming mass function parametrizations from Despali et al. (2016) or calibrated against the RayGal simulation halo catalogs. In the case of the Despali et al. mass functions the average sparsity includes the matched halo correction calibrated on the RayGal simulations. The input linear matter power spectrum for a given set of cosmological parameters is given by the Eisenstein & Hu (1998) formulae of the linear transfer function, while the linearly extrapolated spherical collapse threshold is given by the formula from Kitayama & Suto (1996). For more details see Corasaniti et al. (2018) and Corasaniti, Sereno & Ettori (2021).
 
 # Installation & Running
 
@@ -27,7 +27,7 @@ If you use the code please cite:
 
 Balmes et al., Mont. Not. Roy. Astron. Soc. 437, 2328 (2014), arXiv:1307.2922\
 Corasaniti et al. (2017), Astrophys. J. 862, 40 (2018), arXiv:1711.00480\
-Corasaniti, Sereno, Ettori, in preparation
+Corasaniti, Sereno, Ettori, Astrophys. J. in press, arXiv:2103.03283\
 
 ## Author
 
